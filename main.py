@@ -12,8 +12,10 @@ if __name__ == "__main__":
     events = json.loads(
         requests.get(f'https://api.github.com/users/{username}/events').content
     )
-
-    print(events[0]['created_at'])
+    try:
+        print(events[0]['created_at'])
+    except KeyError:
+        print(f'No recent events found for username "{username}"')
     
 
 
